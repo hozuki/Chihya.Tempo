@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+    <TargetFrameworks>netcoreapp1.0</TargetFrameworks>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <DebugType>Portable</DebugType>
+    <ApplicationIcon />
+    <OutputTypeEx>exe</OutputTypeEx>
+    <StartupObject>Chihya.Tempo.Test.Program</StartupObject>
+    <RootNamespace>Chihya.Tempo.Test</RootNamespace>
+    <AssemblyName>Tempo</AssemblyName>
+    <RuntimeIdentifiers>win7-x86;win7-x64;rhel.7-x64;ubuntu.14.04-x64;centos.7-x64;debian.8-x64;fedora.23-x64;opensuse.13.2-x64;ol.7-x64;linuxmint.17-x64;osx.10.10-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Chihya.Tempo\Chihya.Tempo.csproj" />
+  </ItemGroup>
+
+</Project>

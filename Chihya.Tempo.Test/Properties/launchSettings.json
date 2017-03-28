@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Chihya.Tempo.Test": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\Documents\\Audition\\apple_tea\\apple_tea_mixdown.wav"
+    }
+  }
+}

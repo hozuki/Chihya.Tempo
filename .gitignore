@@ -1,0 +1,9 @@
+packages/
+
+[Bb]in/
+[Oo]bj/
+
+.vs
+_[Rr]e[Ss]harper*
+*.user
+!*.pubxml.user

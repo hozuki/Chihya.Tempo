@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.6;netcoreapp1.0</TargetFrameworks>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <DebugType>Portable</DebugType>
+    <RootNamespace>Chihya.Tempo</RootNamespace>
+    <AssemblyName>Chihya.Tempo</AssemblyName>
+    <RuntimeIdentifiers>win7-x86;win7-x64;rhel.7-x64;ubuntu.14.04-x64;centos.7-x64;debian.8-x64;fedora.23-x64;opensuse.13.2-x64;ol.7-x64;linuxmint.17-x64;osx.10.10-x64</RuntimeIdentifiers>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Authors>George Wu</Authors>
+    <Company>MIC Studio</Company>
+    <Description>Tempo detector, compatible with .NET core.</Description>
+    <Copyright>Copyright © 2017 George Wu</Copyright>
+    <PackageLicenseUrl>https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/hozuki/Chihya.Tempo</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hozuki/Chihya.Tempo</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>bpm beat tempo</PackageTags>
+  </PropertyGroup>
+
+</Project>
