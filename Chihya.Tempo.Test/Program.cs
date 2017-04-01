@@ -20,7 +20,9 @@ namespace Chihya.Tempo.Test {
             Console.WriteLine($"File: {fileName}");
             var wav = WaveReader.ReadWaveFile(fileName);
             var config = EnergyTempoDetectorConfig.For44KHz;
-            var detector = new EnergyTempoDetector(wav.data, wav.properties, config);
+            var filter = new ButterworthFilter(5000, 44100);
+            //AudioFilter filter = null;
+            var detector = new EnergyTempoDetector(wav.data, wav.properties, config, filter);
             var tempo = detector.Detect();
             Console.WriteLine($"Starts from {tempo.BeatStart}, BPM is {tempo.BeatsPerMinute:0.00}");
 

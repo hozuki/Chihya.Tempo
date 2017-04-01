@@ -9,11 +9,14 @@ using System.Linq;
 namespace Chihya.Tempo {
     public sealed class EnergyTempoDetector : TempoDetector {
 
-        public EnergyTempoDetector(byte[] data, SignalProperties properties, EnergyTempoDetectorConfig config)
+        public EnergyTempoDetector(byte[] data, SignalProperties properties, EnergyTempoDetectorConfig config, AudioFilter preprocessingFilter = null)
             : base(data, properties, config.SelectedChannel) {
             _energyBuffer = new EnergyBuffer(config.BufferSize);
             Config = config;
+            PreprocessingFilter = preprocessingFilter;
         }
+
+        public AudioFilter PreprocessingFilter { get; }
 
         public EnergyTempoDetectorConfig Config { get; }
 
@@ -26,8 +29,8 @@ namespace Chihya.Tempo {
         /// <returns></returns>
         public override TempoDetectionResult Detect() {
             var config = Config;
-            var signal = new Signal(RawData, SignalProperties, SelectedChannel);
-            var energies = signal.GetEnergies(config.ChunkSize);    
+            var signal = new Signal(RawData, SignalProperties, SelectedChannel, PreprocessingFilter);
+            var energies = signal.GetEnergies(config.ChunkSize);
             var energyBuffer = _energyBuffer;
             energyBuffer.Clear();
 

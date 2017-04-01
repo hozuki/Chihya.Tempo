@@ -106,7 +106,7 @@ namespace Chihya.Tempo {
         /// A set of configuration values which is useful for 44kHz audio data.
         /// </summary>
         public static readonly EnergyTempoDetectorConfig For44KHz = new EnergyTempoDetectorConfig(512, 512, 0, -0.0025714, 1.5142857,
-            TimeSpan.FromSeconds(0.04), TimeSpan.FromSeconds(60d / 200), 0.7f);
+            TimeSpan.FromSeconds(0.04), TimeSpan.FromSeconds(60d / 200), 0.8f);
 
     }
 }

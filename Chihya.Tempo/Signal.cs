@@ -4,7 +4,7 @@ using System.Linq;
 namespace Chihya.Tempo {
     internal sealed class Signal {
 
-        public Signal(byte[] data, int channels, int length, int sampleRate, SignalSampleFormat format, int selectedChannel) {
+        public Signal(byte[] data, int channels, int length, int sampleRate, SignalSampleFormat format, int selectedChannel, AudioFilter filter = null) {
             if (data == null) {
                 throw new ArgumentNullException(nameof(data));
             }
@@ -16,11 +16,12 @@ namespace Chihya.Tempo {
                 throw new ArgumentOutOfRangeException(nameof(selectedChannel), selectedChannel, "Selected channel does not exist.");
             }
             Properties = properties;
-            SelectedChannel = selectedChannel;
             _rawData = CheckAndConvert(data);
+            SelectedChannel = selectedChannel;
+            Filter = filter;
         }
 
-        public Signal(byte[] data, SignalProperties properties, int selectedChannel) {
+        public Signal(byte[] data, SignalProperties properties, int selectedChannel, AudioFilter filter = null) {
             if (data == null) {
                 throw new ArgumentNullException(nameof(data));
             }
@@ -31,8 +32,9 @@ namespace Chihya.Tempo {
                 throw new ArgumentOutOfRangeException(nameof(selectedChannel), selectedChannel, "Selected channel must be non-negative.");
             }
             Properties = properties;
-            SelectedChannel = selectedChannel;
             _rawData = CheckAndConvert(data);
+            SelectedChannel = selectedChannel;
+            Filter = filter;
         }
 
         public int SelectedChannel { get; }
@@ -40,6 +42,8 @@ namespace Chihya.Tempo {
         public SignalProperties Properties { get; }
 
         public float[] RawData => _rawData;
+
+        public AudioFilter Filter { get; }
 
         public float GetEnergy() {
             return _rawData.Sum(f => f * f);
@@ -60,11 +64,15 @@ namespace Chihya.Tempo {
             var energies = new float[waveCount];
             var left = length;
             var rawData = _rawData;
+            var filter = Filter;
             for (var i = 0; i < waveCount; ++i) {
                 var n = left < groupSize ? left : groupSize;
                 var energy = 0f;
                 for (var j = 0; j < n; ++j) {
                     var f = rawData[i * groupSize + j];
+                    if (filter != null) {
+                        f = filter.NewSample(f);
+                    }
                     energy += f * f;
                 }
                 left -= n;
